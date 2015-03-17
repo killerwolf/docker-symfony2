@@ -1,0 +1,1 @@
+<?php echo 'every one' ?>

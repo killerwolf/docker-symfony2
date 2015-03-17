@@ -1,0 +1,23 @@
+web:
+  image: nginx
+  volumes:
+   - www:/var/www/webdev
+   - docker/nginx:/etc/nginx/conf.d
+  links:
+   - sf2db
+   - sf2phpfpm
+   - sf2phpcli
+  ports:
+   - "80:80"
+sf2db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+sf2phpfpm:
+  image: php:fpm
+  volumes:
+   - www:/var/www/webdev
+sf2phpcli:
+  image: php:cli
+  volumes:
+   - www:/var/www/webdev
