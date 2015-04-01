@@ -1,7 +1,7 @@
-web:
+sf2web:
   image: nginx
   volumes:
-   - www:/var/www/webdev
+   - www:/var/www/application
    - docker/nginx:/etc/nginx/conf.d
   links:
    - sf2db
@@ -16,8 +16,8 @@ sf2db:
 sf2phpfpm:
   image: php:fpm
   volumes:
-   - www:/var/www/webdev
+   - www:/var/www/application
 sf2phpcli:
   image: php:cli
   volumes:
-   - www:/var/www/webdev
+   - www:/var/www/application
