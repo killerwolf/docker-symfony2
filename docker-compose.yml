@@ -1,8 +1,8 @@
 sf2web:
   image: nginx
   volumes:
-   - www:/var/www/application
-   - docker/nginx:/etc/nginx/conf.d
+   - /Users/killerwolf/git/docker-symfony2/www:/var/www/application
+   - /Users/killerwolf/git/docker-symfony2/docker/nginx:/etc/nginx/conf.d
   links:
    - sf2db
    - sf2phpfpm
@@ -16,8 +16,17 @@ sf2db:
 sf2phpfpm:
   image: php:fpm
   volumes:
-   - www:/var/www/application
+   - /Users/killerwolf/git/docker-symfony2/www:/var/www/application
+   - /Users/killerwolf/git/docker-symfony2/docker/php:/usr/local/etc/php/conf.d
+  volumes_from:
+   - sf2data
 sf2phpcli:
   image: php:cli
   volumes:
-   - www:/var/www/application
+   - /Users/killerwolf/git/docker-symfony2/www:/var/www/application
+   - /Users/killerwolf/git/docker-symfony2/docker/php:/usr/local/etc/php/conf.d
+sf2data:
+  image: busybox
+  volumes:
+    - /var/www/application/app/cache
+    - /var/www/application/app/logs
